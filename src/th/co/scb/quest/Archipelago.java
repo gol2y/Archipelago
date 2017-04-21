@@ -6,8 +6,9 @@ public class Archipelago {
 	private int day;
 	
 	public void initialWorld(String command) {
-		createIslands(6);
-		setDay(5);
+		String[] amount = command.split(" ");
+		createIslands(Integer.valueOf(amount[0]));
+		setDay(Integer.valueOf(amount[1]));
 	}
 	
 	public void createIslands(int numberOfIsland) {
