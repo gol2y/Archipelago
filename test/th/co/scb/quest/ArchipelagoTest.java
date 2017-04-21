@@ -86,6 +86,12 @@ public class ArchipelagoTest {
 		assertEquals("YES 1", archipelago.check("1 2"));
 	}
 	
+	@Test
+	public void build_bridge_2_5_on_day_2_and_check_2_5_choose_YES_2(){
+		archipelago.buildBridge(2,"2 5");
+		assertEquals("YES 2", archipelago.check("2 5"));
+	}
+	
 	private void assertIslandHasThisBridge(Bridge expected, int... islands){
 		for(int island : islands){
 			Island i = archipelago.getIsland(island);

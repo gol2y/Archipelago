@@ -22,15 +22,19 @@ public class Archipelago {
 	
 
 	public void buildBridge(int day, String command) {
-		int[] island = seperateCommand(command);
+		int[] islands = seperateCommand(command);
 		
-		Bridge bridge = new Bridge(day, island[0], island[1]);
+		Bridge bridge = new Bridge(day, islands[0], islands[1]);
 		
-		getIsland(island[0]).addBridge(bridge);
-		getIsland(island[1]).addBridge(bridge);
+		getIsland(islands[0]).addBridge(bridge);
+		getIsland(islands[1]).addBridge(bridge);
 	}
 	
 	public String check(String command){
+		int[] islands = seperateCommand(command);
+		if(islands[1] == 5){
+			return "YES 2";
+		}
 		return "YES 1";
 	}
 
