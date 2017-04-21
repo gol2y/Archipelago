@@ -1,5 +1,7 @@
 package th.co.scb.quest;
 
+import java.util.stream.Stream;
+
 public class Archipelago {
 
 	private Island[] islands;
@@ -12,7 +14,8 @@ public class Archipelago {
 	}
 	
 	public void createIslands(int numberOfIsland) {
-		islands = new Island[numberOfIsland];
+		Stream<Island> islandsStream = Stream.generate(Island::new).limit(numberOfIsland);
+		islands = islandsStream.toArray(Island[]::new);
 	}
 
 	public Island[] getIslands() {

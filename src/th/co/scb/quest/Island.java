@@ -1,9 +1,13 @@
 package th.co.scb.quest;
 
+import java.util.LinkedList;
+
 public class Island {
 
-	public Object getBridges() {
-		return null;
+	private LinkedList<Bridge> bridges = new LinkedList<Bridge>();
+	
+	public LinkedList<Bridge> getBridges() {
+		return bridges;
 	}
 
 }
