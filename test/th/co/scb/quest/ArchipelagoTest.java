@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class ArchipelagoTest {
-
+	
 	private Archipelago archipelago = new Archipelago();
 	
 	@Test
@@ -38,6 +38,11 @@ public class ArchipelagoTest {
 		archipelago.initialWorld("16 20");
 		assertEquals(16, archipelago.getIslands().length);
 		assertEquals(20, archipelago.getDay());
+	}
+	
+	@Test
+	public void islands_need_to_be_island_class() {
+		assertEquals(Island.class , archipelago.getIslands().getClass());
 	}
 
 }
