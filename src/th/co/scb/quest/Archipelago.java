@@ -19,9 +19,15 @@ public class Archipelago {
 	}
 	
 
-	public void buildBridge(String command) {
-		getIsland(1).addBridge(new Bridge());
-		getIsland(2).addBridge(new Bridge());
+	public void buildBridge(int day, String command) {
+		String[] island = command.split(" ");
+		int fromIsland = Integer.valueOf(island[0]);
+		int toIsland = Integer.valueOf(island[1]);
+		
+		Bridge bridge = new Bridge(day, fromIsland, toIsland);
+		
+		getIsland(fromIsland).addBridge(bridge);
+		getIsland(toIsland).addBridge(bridge);
 	}
 
 	public Island[] getIslands() {

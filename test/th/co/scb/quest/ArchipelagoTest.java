@@ -61,11 +61,20 @@ public class ArchipelagoTest {
 	
 	@Test
 	public void when_build_bridge_1_2_island_1_2_has_new_bridge(){
-		archipelago.buildBridge("1 2");
+		archipelago.buildBridge(1,"1 2");
 		Island island1 = archipelago.getIsland(1);
 		Island island2 = archipelago.getIsland(2);
 		assertEquals(1, island1.getBridges().size());
 		assertEquals(1, island2.getBridges().size());
+	}
+	
+	@Test
+	public void when_build_bridge_2_3_island_2_3_has_new_correct_bridge(){
+		archipelago.buildBridge(1,"2 3");
+		Island island2 = archipelago.getIsland(2);
+		Island island3 = archipelago.getIsland(3);
+		assertEquals(new Bridge(1,2,3), island2.getBridges().get(0));
+		assertEquals(new Bridge(1,2,3), island3.getBridges().get(0));
 	}
 
 }
