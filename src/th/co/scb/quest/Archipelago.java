@@ -1,16 +1,18 @@
 package th.co.scb.quest;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class Archipelago {
 
+	private static final String SEPERATOR = " ";
 	private Island[] islands;
 	private int day;
 	
 	public void initialWorld(String command) {
-		String[] amount = command.split(" ");
-		createIslands(Integer.valueOf(amount[0]));
-		setDay(Integer.valueOf(amount[1]));
+		int[] amount = seperateCommand(command);
+		createIslands(amount[0]);
+		setDay(amount[1]);
 	}
 	
 	public void createIslands(int numberOfIsland) {
@@ -20,14 +22,12 @@ public class Archipelago {
 	
 
 	public void buildBridge(int day, String command) {
-		String[] island = command.split(" ");
-		int fromIsland = Integer.valueOf(island[0]);
-		int toIsland = Integer.valueOf(island[1]);
+		int[] island = seperateCommand(command);
 		
-		Bridge bridge = new Bridge(day, fromIsland, toIsland);
+		Bridge bridge = new Bridge(day, island[0], island[1]);
 		
-		getIsland(fromIsland).addBridge(bridge);
-		getIsland(toIsland).addBridge(bridge);
+		getIsland(island[0]).addBridge(bridge);
+		getIsland(island[1]).addBridge(bridge);
 	}
 
 	public Island[] getIslands() {
@@ -46,4 +46,8 @@ public class Archipelago {
 		this.day = day;
 	}
 
+	private int[] seperateCommand(String command){
+		String[] suits = command.split(SEPERATOR);
+		return Arrays.stream(suits).mapToInt(Integer::valueOf).toArray();
+	}
 }
