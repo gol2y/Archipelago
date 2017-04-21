@@ -4,8 +4,8 @@ public class Archipelago {
 
 	private Object[] islands;
 	
-	public void createIslands(int i) {
-		islands = new Object[i];
+	public void createIslands(int numberOfIsland) {
+		islands = new Object[numberOfIsland];
 	}
 
 	public Object[] getIslands() {
