@@ -29,6 +29,10 @@ public class Archipelago {
 		getIsland(island[0]).addBridge(bridge);
 		getIsland(island[1]).addBridge(bridge);
 	}
+	
+	public String check(String command){
+		return null;
+	}
 
 	public Island[] getIslands() {
 		return islands;
