@@ -5,6 +5,10 @@ public class Archipelago {
 	private Object[] islands;
 	private int day;
 	
+	public void initialWorld(String string) {
+
+	}
+	
 	public void createIslands(int numberOfIsland) {
 		islands = new Object[numberOfIsland];
 	}
@@ -20,4 +24,6 @@ public class Archipelago {
 	public void setDay(int day) {
 		this.day = day;
 	}
+
+
 }

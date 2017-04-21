@@ -25,5 +25,12 @@ public class ArchipelagoTest {
 		archipelago.setDay(15);
 		assertEquals(15, archipelago.getDay());
 	}
+	
+	@Test
+	public void when_initial_world_choose_have_correct_island_and_day() {
+		archipelago.initialWorld("6 5");
+		assertEquals(6, archipelago.getIslands().length);
+		assertEquals(5, archipelago.getDay());
+	}
 
 }
