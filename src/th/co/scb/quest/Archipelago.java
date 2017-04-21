@@ -1,6 +1,7 @@
 package th.co.scb.quest;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.stream.Stream;
 
 public class Archipelago {
@@ -32,10 +33,26 @@ public class Archipelago {
 	
 	public String check(String command){
 		int[] islands = seperateCommand(command);
-		if(islands[1] == 5){
-			return "YES 2";
+		boolean hasRoute = false;
+		String message = "";
+		Bridge oldestBridge = new Bridge();
+		
+		Iterator<Bridge> iterator = getIsland(islands[0]).getBridges().descendingIterator();
+		while(iterator.hasNext()){
+			Bridge bridge = iterator.next();
+			if(bridge.getToIsland() == islands[1] || bridge.getFromIsland() == islands[1]){
+				hasRoute = true;
+				oldestBridge = bridge;
+			}
 		}
-		return "YES 1";
+		
+		if(hasRoute){
+			message = "YES " + oldestBridge.getCreateDate();
+		} else {
+			message = "NO";
+		}
+		
+		return message;
 	}
 
 	public Island[] getIslands() {

@@ -6,7 +6,12 @@ public class Bridge {
 	private int fromIsland;
 	private int toIsland;
 
+	public Bridge(){}
+	
 	public Bridge(int day,int from, int to) {
+		createDate = day;
+		fromIsland = from;
+		toIsland = to;
 	}
 
 	@Override
