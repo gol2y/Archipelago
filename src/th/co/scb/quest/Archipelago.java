@@ -17,9 +17,18 @@ public class Archipelago {
 		Stream<Island> islandsStream = Stream.generate(Island::new).limit(numberOfIsland);
 		islands = islandsStream.toArray(Island[]::new);
 	}
+	
+
+	public void buildBridge(String command) {
+		
+	}
 
 	public Island[] getIslands() {
 		return islands;
+	}
+	
+	public Island getIsland(int islandNumber) {
+		return islands[islandNumber-1];
 	}
 
 	public int getDay() {
@@ -29,6 +38,5 @@ public class Archipelago {
 	public void setDay(int day) {
 		this.day = day;
 	}
-
 
 }

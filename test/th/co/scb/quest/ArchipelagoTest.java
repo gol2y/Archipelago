@@ -58,5 +58,14 @@ public class ArchipelagoTest {
 	public void when_initial_every_island_has_empty_bridge_list() {
 		assertEquals(new LinkedList<Bridge>(), archipelago.getIslands()[0].getBridges());
 	}
+	
+	@Test
+	public void when_build_bridge_1_2_island_1_2_has_new_bridge(){
+		archipelago.buildBridge("1 2");
+		Island island1 = archipelago.getIsland(1);
+		Island island2 = archipelago.getIsland(2);
+		assertEquals(1, island1.getBridges().size());
+		assertEquals(1, island2.getBridges().size());
+	}
 
 }
