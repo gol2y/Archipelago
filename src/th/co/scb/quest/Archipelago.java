@@ -7,7 +7,7 @@ public class Archipelago {
 	}
 
 	public Object[] getIslands() {
-		return null;
+		return new Object[10];
 	}
 
 }
