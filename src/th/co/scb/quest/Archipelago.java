@@ -2,7 +2,7 @@ package th.co.scb.quest;
 
 public class Archipelago {
 
-	private Object[] islands;
+	private Island[] islands;
 	private int day;
 	
 	public void initialWorld(String command) {
@@ -12,7 +12,7 @@ public class Archipelago {
 	}
 	
 	public void createIslands(int numberOfIsland) {
-		islands = new Object[numberOfIsland];
+		islands = new Island[numberOfIsland];
 	}
 
 	public Object[] getIslands() {

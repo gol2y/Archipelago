@@ -1,12 +1,19 @@
 package th.co.scb.quest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class ArchipelagoTest {
 	
-	private Archipelago archipelago = new Archipelago();
+	private Archipelago archipelago;
+	
+	@Before
+	public void initialArchipelago(){
+		archipelago = new Archipelago();
+		archipelago.initialWorld("10 10");
+	}
 	
 	@Test
 	public void when_create_10_island_has_correct_size_island() {
@@ -42,7 +49,7 @@ public class ArchipelagoTest {
 	
 	@Test
 	public void islands_need_to_be_island_class() {
-		assertEquals(Island.class , archipelago.getIslands().getClass());
+		assertEquals(Island[].class , archipelago.getIslands().getClass());
 	}
 
 }
