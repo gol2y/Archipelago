@@ -15,7 +15,7 @@ public class Archipelago {
 		islands = new Island[numberOfIsland];
 	}
 
-	public Object[] getIslands() {
+	public Island[] getIslands() {
 		return islands;
 	}
 

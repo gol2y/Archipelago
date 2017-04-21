@@ -2,6 +2,8 @@ package th.co.scb.quest;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.LinkedList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,6 +52,11 @@ public class ArchipelagoTest {
 	@Test
 	public void islands_need_to_be_island_class() {
 		assertEquals(Island[].class , archipelago.getIslands().getClass());
+	}
+	
+	@Test
+	public void when_initial_every_island_has_empty_bridge_list() {
+		assertEquals(new LinkedList<Bridge>(), archipelago.getIslands()[0].getBridges());
 	}
 
 }
