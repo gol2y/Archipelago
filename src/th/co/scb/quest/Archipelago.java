@@ -20,7 +20,8 @@ public class Archipelago {
 	
 
 	public void buildBridge(String command) {
-		
+		getIsland(1).addBridge(new Bridge());
+		getIsland(2).addBridge(new Bridge());
 	}
 
 	public Island[] getIslands() {

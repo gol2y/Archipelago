@@ -9,5 +9,9 @@ public class Island {
 	public LinkedList<Bridge> getBridges() {
 		return bridges;
 	}
+	
+	public void addBridge(Bridge bridge){
+		bridges.add(bridge);
+	}
 
 }
