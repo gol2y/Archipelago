@@ -19,5 +19,12 @@ public class ArchipelagoTest {
 		archipelago.createIslands(21);
 		assertEquals(21, archipelago.getIslands().length);
 	}
+	
+	@Test
+	public void when_set_day_choose_have_correct_day() {
+		Archipelago archipelago = new Archipelago();
+		archipelago.setDay(15);
+		assertEquals(15, archipelago.getDay());
+	}
 
 }
