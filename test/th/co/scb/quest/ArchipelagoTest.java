@@ -27,10 +27,17 @@ public class ArchipelagoTest {
 	}
 	
 	@Test
-	public void when_initial_world_choose_have_correct_island_and_day() {
+	public void when_initial_world_choose_have_correct_island_and_day_6_5() {
 		archipelago.initialWorld("6 5");
 		assertEquals(6, archipelago.getIslands().length);
 		assertEquals(5, archipelago.getDay());
+	}
+	
+	@Test
+	public void when_initial_world_choose_have_correct_island_and_day_16_20() {
+		archipelago.initialWorld("16 20");
+		assertEquals(16, archipelago.getIslands().length);
+		assertEquals(20, archipelago.getDay());
 	}
 
 }
