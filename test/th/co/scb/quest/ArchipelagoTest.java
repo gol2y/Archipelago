@@ -81,27 +81,55 @@ public class ArchipelagoTest {
 	}
 	
 	@Test
-	public void build_bridge_1_2_on_day_1_and_check_1_2_choose_YES_1(){
+	public void build_bridge_1_2_on_day_1_and_check_1_2_should_YES_1(){
 		archipelago.buildBridge(1,"1 2");
 		assertEquals("YES 1", archipelago.check("1 2"));
 	}
 	
 	@Test
-	public void build_bridge_2_5_on_day_2_and_check_2_5_choose_YES_2(){
+	public void build_bridge_2_5_on_day_2_and_check_2_5_should_YES_2(){
 		archipelago.buildBridge(2,"2 5");
 		assertEquals("YES 2", archipelago.check("2 5"));
 	}
 	
 	@Test
-	public void build_bridge_3_6_on_day_3_and_check_3_6_choose_YES_3(){
+	public void build_bridge_3_6_on_day_3_and_check_3_6_should_YES_3(){
 		archipelago.buildBridge(3,"3 6");
 		assertEquals("YES 3", archipelago.check("3 6"));
+	}
+	
+	@Test
+	public void build_bridge_3_6_on_day_3_and_check_4_6_should_NO(){
+		archipelago.buildBridge(3,"3 6");
+		assertEquals("NO", archipelago.check("4 6"));
+	}
+	
+	@Test
+	public void build_bridge_3_6_and_4_5_on_day_2_3_and_check_5_4_should_YES_3(){
+		archipelago.buildBridge(2,"3 6");
+		archipelago.buildBridge(3,"4 5");
+		assertEquals("YES 3", archipelago.check("5 4"));
+	}
+	
+	@Test
+	public void build_bridge_3_4_after_check_3_4_should_remove_this_bridge(){
+		archipelago.buildBridge(1,"3 4");
+		Bridge expectedBridge = new Bridge(1,3,4);
+		assertEquals("YES 1", archipelago.check("3 4"));
+		assertAllIslandNotHasThisBridge(expectedBridge, 3, 4);
 	}
 	
 	private void assertIslandHasThisBridge(Bridge expected, int... islands){
 		for(int island : islands){
 			Island i = archipelago.getIsland(island);
 			assertTrue("Island not contain bridge", i.getBridges().contains(expected));
+		}
+	}
+	
+	private void assertAllIslandNotHasThisBridge(Bridge expected, int... islands){
+		for(int island : islands){
+			Island i = archipelago.getIsland(island);
+			assertFalse("Island contain bridge", i.getBridges().contains(expected));
 		}
 	}
 
