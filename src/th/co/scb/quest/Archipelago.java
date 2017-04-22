@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 public class Archipelago {
 
 	private static final String SEPERATOR = " ";
+	public static final String INVALID_ISLAND_MSG = "[FAIL] Invalid Island";
 	private Island[] islands;
 	private int day;
 	
