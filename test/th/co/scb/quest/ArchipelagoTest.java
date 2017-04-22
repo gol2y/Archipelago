@@ -166,7 +166,17 @@ public class ArchipelagoTest {
 		try{
 			archipelago.build(1,"A Z");
 		} catch(RuntimeException exception){
-			assertEquals(Archipelago.INVALID_ISLAND_MSG, exception.getMessage());
+			assertEquals(Archipelago.INVALID_COMMAND_NUMERIC_MSG, exception.getMessage());
+		}
+	}
+	
+	@Test
+	public void build_blank_island(){
+		archipelago.initialWorld("3 1");
+		try{
+			archipelago.build(1,"");
+		} catch(RuntimeException exception){
+			assertEquals(Archipelago.INVALID_COMMAND_LENGTH_MSG, exception.getMessage());
 		}
 	}
 	

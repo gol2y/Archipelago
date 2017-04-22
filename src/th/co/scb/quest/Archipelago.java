@@ -9,12 +9,14 @@ import java.util.stream.Stream;
 public class Archipelago {
 
 	private static final String SEPERATOR = " ";
-	public static final String INVALID_ISLAND_MSG = "[FAIL] Invalid Island";
+	public static final String INVALID_ISLAND_MSG = "[FAIL] Invalid island";
+	public static final String INVALID_COMMAND_LENGTH_MSG = "[FAIL] Invalid command length";
+	public static final String INVALID_COMMAND_NUMERIC_MSG = "[FAIL] Command not numeric";
 	private Island[] islands;
 	private int day;
 	
 	public void initialWorld(String command) {
-		int[] amount = seperateCommand(command);
+		int[] amount = validateAndSeperateCommand(command);
 		createIslands(amount[0]);
 		setDay(amount[1]);
 	}
@@ -26,7 +28,7 @@ public class Archipelago {
 	
 
 	public void build(int day, String command) {
-		int[] islands = seperateCommand(command);
+		int[] islands = validateAndSeperateCommand(command);
 		
 		if(!isRealIsland(islands[0]) || !isRealIsland(islands[1])){
 			throw new RuntimeException(INVALID_ISLAND_MSG);
@@ -39,7 +41,7 @@ public class Archipelago {
 	}
 	
 	public String check(String command){
-		int[] islands = seperateCommand(command);
+		int[] islands = validateAndSeperateCommand(command);
 		int from = islands[0];
 		int to = islands[1];
 		String message = "";
@@ -118,8 +120,19 @@ public class Archipelago {
 		this.day = day;
 	}
 
-	private int[] seperateCommand(String command){
+	private int[] validateAndSeperateCommand(String command){
 		String[] suits = command.split(SEPERATOR);
-		return Arrays.stream(suits).mapToInt(Integer::valueOf).toArray();
+		int[] commands;
+		
+		if(suits.length < 2)
+			throw new RuntimeException(INVALID_COMMAND_LENGTH_MSG);
+		
+		try{
+			commands = Arrays.stream(suits).mapToInt(Integer::parseInt).toArray();
+		} catch(Exception ex){
+			throw new RuntimeException(INVALID_COMMAND_NUMERIC_MSG);
+		}
+		
+		return commands;
 	}
 }
