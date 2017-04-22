@@ -17,6 +17,10 @@ public class Archipelago {
 	private Island[] islands;
 	private int day;
 	
+	public String order(String string) {
+		return "";
+	}
+	
 	public void initialWorld(String command) {
 		int[] amount = validateAndSeperateCommand(command);
 		createIslands(amount[0]);
@@ -139,4 +143,6 @@ public class Archipelago {
 		
 		return commands;
 	}
+
+
 }

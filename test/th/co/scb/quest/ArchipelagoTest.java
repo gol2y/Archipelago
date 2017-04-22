@@ -190,6 +190,11 @@ public class ArchipelagoTest {
 		}
 	}
 	
+	@Test
+	public void correct_command_translate(){
+		assertEquals("initialWorld", archipelago.order("5 7"));
+	}
+	
 	private void assertIslandHasThisBridge(Bridge expected, int... islands){
 		for(int island : islands){
 			Island i = archipelago.getIsland(island);
