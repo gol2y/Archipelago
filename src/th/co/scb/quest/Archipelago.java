@@ -28,6 +28,10 @@ public class Archipelago {
 	public void build(int day, String command) {
 		int[] islands = seperateCommand(command);
 		
+		if(!isRealIsland(islands[0]) || !isRealIsland(islands[1])){
+			throw new RuntimeException(INVALID_ISLAND_MSG);
+		}
+		
 		Bridge bridge = new Bridge(day, islands[0], islands[1]);
 		
 		getIsland(islands[0]).addBridge(bridge);
@@ -92,6 +96,10 @@ public class Archipelago {
 	private void removeBridge(Bridge bridge){
 		getIsland(bridge.getFromIsland()).removeBridge(bridge);
 		getIsland(bridge.getToIsland()).removeBridge(bridge);
+	}
+	
+	private boolean isRealIsland(int number){
+		return 0 < number && number <= islands.length;
 	}
 
 	public Island[] getIslands() {
