@@ -17,8 +17,16 @@ public class Archipelago {
 	private Island[] islands;
 	private int day;
 	
-	public String order(String string) {
-		return "";
+	public String order(int day, String command) {
+		String result ="";
+		if(command.contains("build")){
+			build(day,command.replace("build ", ""));
+		} else if(command.contains("check")){
+			result = check(command.replace("check ", ""));
+		} else if(command.split(SEPERATOR).length == 2){
+			initialWorld(command);
+		}
+		return result;
 	}
 	
 	public void initialWorld(String command) {

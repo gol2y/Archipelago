@@ -191,8 +191,10 @@ public class ArchipelagoTest {
 	}
 	
 	@Test
-	public void correct_command_translate(){
-		assertEquals("initialWorld", archipelago.order("5 7"));
+	public void input_sequence_order_and_have_result_correct(){
+		archipelago.order(0, "5 2");
+		archipelago.order(1, "build 5 4");
+		assertEquals("YES 1", archipelago.order(2, "check 4 5"));
 	}
 	
 	private void assertIslandHasThisBridge(Bridge expected, int... islands){
