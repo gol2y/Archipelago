@@ -2,6 +2,8 @@ package th.co.scb.quest;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Stream;
 
 public class Archipelago {
@@ -22,7 +24,7 @@ public class Archipelago {
 	}
 	
 
-	public void buildBridge(int day, String command) {
+	public void build(int day, String command) {
 		int[] islands = seperateCommand(command);
 		
 		Bridge bridge = new Bridge(day, islands[0], islands[1]);
@@ -33,26 +35,62 @@ public class Archipelago {
 	
 	public String check(String command){
 		int[] islands = seperateCommand(command);
-		boolean hasRoute = false;
+		int from = islands[0];
+		int to = islands[1];
 		String message = "";
-		Bridge oldestBridge = new Bridge();
 		
-		Iterator<Bridge> iterator = getIsland(islands[0]).getBridges().descendingIterator();
-		while(iterator.hasNext()){
-			Bridge bridge = iterator.next();
-			if(bridge.getToIsland() == islands[1] || bridge.getFromIsland() == islands[1]){
-				hasRoute = true;
-				oldestBridge = bridge;
-			}
-		}
+		Bridge oldestBridge = findNewestRouteOldestBridge(from,to, new TreeSet<Integer>(), new Bridge());
 		
-		if(hasRoute){
+		if(oldestBridge.getCreateDate() > 0){
 			message = "YES " + oldestBridge.getCreateDate();
+			removeBridge(oldestBridge);
 		} else {
 			message = "NO";
 		}
 		
 		return message;
+	}
+
+	private Bridge findNewestRouteOldestBridge(int now, int destination, Set<Integer> visitedIsland, Bridge oldestBridgeInRoute){
+		
+		visitedIsland.add(now);
+		
+		Iterator<Bridge> iterator = getIsland(now).getBridges().descendingIterator();
+		while(iterator.hasNext()){
+			Bridge bridge = iterator.next();
+			
+			oldestBridgeInRoute = chooseOldestBridge(oldestBridgeInRoute, bridge);
+			int nextIsland = chooseNextIsland(now, bridge);
+			
+			if(nextIsland == destination){
+				return oldestBridgeInRoute;
+			} else if(!visitedIsland.contains(nextIsland)){
+				Bridge oldestBridge = findNewestRouteOldestBridge(nextIsland, destination, visitedIsland, oldestBridgeInRoute);
+				if(oldestBridge.getCreateDate() > 0) 
+					return oldestBridge;
+			}
+		}
+		
+		return new Bridge();
+	}
+	
+	private Bridge chooseOldestBridge(Bridge present, Bridge candidate){
+		if(candidate.getCreateDate() < present.getCreateDate() || present.getCreateDate() == 0)
+			return candidate;
+		else
+			return present;
+	}
+	
+	private int chooseNextIsland(int activeIsland, Bridge bridge){
+		if(bridge.getToIsland() == activeIsland)
+			return bridge.getFromIsland();
+		else
+			return bridge.getToIsland();
+	}
+	
+	private void removeBridge(Bridge bridge){
+		getIsland(bridge.getFromIsland()).removeBridge(bridge);
+		getIsland(bridge.getToIsland()).removeBridge(bridge);
 	}
 
 	public Island[] getIslands() {

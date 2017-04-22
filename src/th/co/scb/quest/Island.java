@@ -13,5 +13,9 @@ public class Island {
 	public void addBridge(Bridge bridge){
 		bridges.add(bridge);
 	}
+	
+	public void removeBridge(Bridge bridge){
+		bridges.remove(bridge);
+	}
 
 }
