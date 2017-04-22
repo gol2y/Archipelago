@@ -160,6 +160,16 @@ public class ArchipelagoTest {
 		}
 	}
 	
+	@Test
+	public void build_not_number_island(){
+		archipelago.initialWorld("3 1");
+		try{
+			archipelago.build(1,"A Z");
+		} catch(RuntimeException exception){
+			assertEquals(Archipelago.INVALID_ISLAND_MSG, exception.getMessage());
+		}
+	}
+	
 	private void assertIslandHasThisBridge(Bridge expected, int... islands){
 		for(int island : islands){
 			Island i = archipelago.getIsland(island);
