@@ -12,6 +12,8 @@ public class Archipelago {
 	public static final String INVALID_ISLAND_MSG = "[FAIL] Invalid island";
 	public static final String INVALID_COMMAND_LENGTH_MSG = "[FAIL] Invalid command length";
 	public static final String INVALID_COMMAND_NUMERIC_MSG = "[FAIL] Command not numeric";
+	public static final String INVALID_DAY_MSG = "[FAIL] Invalid day";
+	
 	private Island[] islands;
 	private int day;
 	
@@ -30,10 +32,12 @@ public class Archipelago {
 	public void build(int day, String command) {
 		int[] islands = validateAndSeperateCommand(command);
 		
-		if(!isRealIsland(islands[0]) || !isRealIsland(islands[1])){
+		if(!isRealIsland(islands[0]) || !isRealIsland(islands[1]))
 			throw new RuntimeException(INVALID_ISLAND_MSG);
-		}
 		
+		if(day > this.day)
+			throw new RuntimeException(INVALID_DAY_MSG);
+			
 		Bridge bridge = new Bridge(day, islands[0], islands[1]);
 		
 		getIsland(islands[0]).addBridge(bridge);
@@ -124,7 +128,7 @@ public class Archipelago {
 		String[] suits = command.split(SEPERATOR);
 		int[] commands;
 		
-		if(suits.length < 2)
+		if(suits.length != 2 )
 			throw new RuntimeException(INVALID_COMMAND_LENGTH_MSG);
 		
 		try{

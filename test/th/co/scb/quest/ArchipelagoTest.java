@@ -151,7 +151,7 @@ public class ArchipelagoTest {
 	}
 	
 	@Test
-	public void build_invalid_island(){
+	public void build_invalid_island_throw_error(){
 		archipelago.initialWorld("3 1");
 		try{
 			archipelago.build(1,"1 5");
@@ -161,7 +161,7 @@ public class ArchipelagoTest {
 	}
 	
 	@Test
-	public void build_not_number_island(){
+	public void build_not_number_island_throw_error(){
 		archipelago.initialWorld("3 1");
 		try{
 			archipelago.build(1,"A Z");
@@ -171,12 +171,22 @@ public class ArchipelagoTest {
 	}
 	
 	@Test
-	public void build_blank_island(){
+	public void build_blank_island_throw_error(){
 		archipelago.initialWorld("3 1");
 		try{
 			archipelago.build(1,"");
 		} catch(RuntimeException exception){
 			assertEquals(Archipelago.INVALID_COMMAND_LENGTH_MSG, exception.getMessage());
+		}
+	}
+	
+	@Test
+	public void build_more_than_day_specific_throw_error(){
+		archipelago.initialWorld("3 1");
+		try{
+			archipelago.build(2,"1 3");
+		} catch(RuntimeException exception){
+			assertEquals(Archipelago.INVALID_DAY_MSG, exception.getMessage());
 		}
 	}
 	
